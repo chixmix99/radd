@@ -1,0 +1,26 @@
+{
+  "name": "radd",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Radd (\u0631\u062f) \u2014 AI claims-recovery platform for Saudi healthcare providers. v1: denial appeal generation.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "eval": "tsx scripts/run-eval.ts"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
