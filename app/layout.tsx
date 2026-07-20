@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { LanguageProvider } from "./LanguageProvider";
+import { ClaimsProvider } from "./ClaimsProvider";
 
 export const metadata: Metadata = {
   title: "Radd (رد) — Claims Recovery",
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <style dangerouslySetInnerHTML={{ __html: globalCss }} />
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <ClaimsProvider>{children}</ClaimsProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

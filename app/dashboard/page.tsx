@@ -8,16 +8,20 @@ import {
   upcomingDeadlines,
   underpayments,
 } from "@/lib/metrics";
-import { t, money, type Lang } from "@/lib/i18n";
+import { t, money } from "@/lib/i18n";
 import { useLang, LangToggle } from "../LanguageProvider";
+import { useClaims } from "../ClaimsProvider";
+import { ImportPanel } from "../ImportPanel";
 
 export default function Dashboard() {
   const { lang, dir } = useLang();
-  const m = headlineMetrics();
-  const payers = payerScorecard();
-  const reasons = denialsByReason();
-  const deadlines = upcomingDeadlines();
-  const under = underpayments();
+  const { claims, source } = useClaims();
+  const m = headlineMetrics(claims);
+  const payers = payerScorecard(claims);
+  const reasons = denialsByReason(claims);
+  // demo data uses its baked-in reference date; imported data uses real today
+  const deadlines = upcomingDeadlines(claims, source === "imported" ? new Date() : undefined);
+  const under = underpayments(claims);
   const maxReasonVal = Math.max(...reasons.map((r) => r.valueSar), 1);
   const overdue = deadlines.filter((d) => d.daysLeft < 0).length;
   const urgent = deadlines.filter((d) => d.daysLeft >= 0 && d.daysLeft <= 5).length;
@@ -35,6 +39,7 @@ export default function Dashboard() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <LangToggle />
+            <ImportPanel />
             <Link href="/" className="radd-btn" style={s.navBtn}>
               {t("newAppeal", lang)}
             </Link>

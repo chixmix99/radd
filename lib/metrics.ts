@@ -140,9 +140,10 @@ export interface DeadlineRow {
   daysLeft: number;
 }
 
-/** Appeals with a live deadline, most urgent first. Negative daysLeft = overdue. */
-export function upcomingDeadlines(claims: Claim[] = allClaims()): DeadlineRow[] {
-  const ref = referenceDate().getTime();
+/** Appeals with a live deadline, most urgent first. Negative daysLeft = overdue.
+ *  Pass refDate for imported data (use real "today"); omit for the demo dataset. */
+export function upcomingDeadlines(claims: Claim[] = allClaims(), refDate?: Date): DeadlineRow[] {
+  const ref = (refDate ?? referenceDate()).getTime();
   const day = 1000 * 60 * 60 * 24;
   return claims
     .filter((c) => c.appealDeadline && (c.status === "appealing" || c.status === "denied"))
