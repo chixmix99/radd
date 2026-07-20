@@ -1,6 +1,13 @@
 # Radd (رد) — AI Claims Recovery for Saudi Healthcare Providers
 
-**v1 scope:** paste/upload a claim denial → parse → classify against official NPHIES codes → generate a review-ready appeal letter (EN/AR).
+Radd is a local-first (PDPL-compliant) claims-recovery system for Saudi clinics. It owns the whole denial→recovery→prevention loop, not just letter-writing.
+
+**Two working parts today:**
+
+1. **Appeal generator** (`/`) — paste/upload a denial → parse → classify against official NPHIES codes → generate a review-ready appeal letter (EN/AR). Human approves before sending.
+2. **Revenue Command Center** (`/dashboard`) — every claim over time: money at risk, recovered, and underpaid; appeal deadlines counting down; a payer scorecard; and denial-reason patterns. This is the part a chatbot structurally can't do — it needs memory of all claims, the official rules, and your contracts.
+
+This dual view is the point: the dashboard is what makes Radd a *system* rather than a prompt.
 
 Full system vision (7 modules, architecture, phases, business plan): `docs/build-plan.md`.
 

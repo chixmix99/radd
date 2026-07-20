@@ -35,6 +35,11 @@ export default function Home() {
         Radd <span dir="rtl">رد</span>
       </h1>
       <p>Paste a claim denial letter. Get a reviewed-ready appeal.</p>
+      <p>
+        <a href="/dashboard" style={{ color: "#0f172a", fontWeight: 600 }}>
+          → Open Revenue Command Center
+        </a>
+      </p>
 
       <textarea
         value={letterText}
